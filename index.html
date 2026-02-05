@@ -16,122 +16,105 @@
 
         body { 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-            margin: 0; 
-            background-color: var(--apple-black); 
-            color: var(--white); 
+            margin: 0; background-color: var(--apple-black); color: var(--white); 
         }
 
-        /* --- NAVEGAÇÃO FIXA --- */
+        /* --- NAVEGAÇÃO --- */
         nav { 
-            background: rgba(0, 0, 0, 0.85); 
-            backdrop-filter: blur(20px); 
-            padding: 15px 5%; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            position: fixed; 
-            top: 0; left: 0; right: 0;
-            z-index: 1000; 
-            border: none;
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(20px); 
+            padding: 15px 5%; display: flex; justify-content: space-between; 
+            align-items: center; position: fixed; top: 0; left: 0; right: 0;
+            z-index: 1000;
         }
         .logo { font-size: 1.5rem; font-weight: 600; cursor: pointer; }
         .nav-spacer { height: 60px; }
 
-        /* --- VITRINE --- */
-        #shop-view { display: block; }
-        .hero { text-align: center; padding: 100px 20px; background: linear-gradient(180deg, #111 0%, #000 100%); }
-        .hero h1 { font-size: 3.5rem; margin-bottom: 10px; font-weight: 600; }
-        .hero p { color: #86868b; font-size: 1.5rem; }
+        .hero { text-align: center; padding: 40px 20px; background: linear-gradient(180deg, #111 0%, #000 100%); }
+        .hero h1 { font-size: 3rem; margin-bottom: 10px; font-weight: 600; }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 50px 20px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 10px; }
         
-        /* CARD E IMAGEM AJUSTADOS */
+        /* GRID: 2 POR LINHA NO CELULAR */
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 12px; 
+        }
+        
+        @media (min-width: 768px) {
+            .grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
+        }
+        
+        /* CARD COM BORDA CINZA */
         .card { 
-            background: #161617; 
-            border-radius: 45px; /* Bordas externas bem arredondadas */
-            padding: 20px; /* Reduzi o padding para a imagem preencher mais */
-            text-align: center; 
-            border: 1px solid #333; 
-            transition: 0.4s ease; 
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            background: #161617; border-radius: 45px; 
+            padding: 15px; 
+            text-align: center; border: 1px solid #333; transition: 0.4s ease; cursor: pointer;
+            display: flex; flex-direction: column;
+            min-height: 450px; 
+            justify-content: space-between;
         }
-        .card:hover { border-color: var(--apple-blue); transform: scale(1.03); }
+        .card:hover { border-color: var(--apple-blue); transform: scale(1.02); }
         
+        /* IMAGEM SEM CORTES PRETOS */
         .card img { 
-            width: 95%; /* Ocupa quase todo o card lateralmente */
-            height: 300px; /* Aumentei a altura da imagem */
-            object-fit: cover; /* Faz a imagem preencher o espaço sem distorcer */
-            margin-bottom: 20px; 
-            border-radius: 35px; /* Bordas da imagem mais arredondadas */
+            width: 100%; height: 260px; 
+            object-fit: cover; 
+            border-radius: 35px; 
+            margin-bottom: 15px;
         }
         
-        .badge { font-size: 0.8rem; padding: 6px 14px; border-radius: 30px; font-weight: bold; margin-bottom: 15px; display: inline-block; }
+        @media (min-width: 768px) {
+            .card img { height: 380px; }
+            .card { padding: 25px; min-height: 600px; }
+        }
+        
+        .badge { font-size: 0.7rem; padding: 4px 12px; border-radius: 30px; font-weight: bold; margin-bottom: 10px; display: inline-block; }
         .badge-new { background: var(--apple-blue); }
         .badge-used { background: #f57c00; }
         
-        .price { font-size: 2rem; margin: 15px 0; font-weight: 300; }
-        .btn-buy { background: var(--white); color: black; border: none; padding: 14px 30px; border-radius: 40px; font-weight: 600; width: 90%; cursor: pointer; }
+        .price { font-size: 1.4rem; margin: 10px 0; font-weight: 500; }
+        .btn-buy { background: var(--white); color: black; border: none; padding: 12px 20px; border-radius: 40px; font-weight: 600; width: 100%; cursor: pointer; font-size: 0.9rem; }
 
-        /* --- ABA DO APARELHO --- */
+        /* --- PÁGINA INTERNA --- */
         #product-page { 
-            display: none; 
-            padding-bottom: 80px;
-            min-height: 100vh;
+            display: none; padding: 100px 5% 40px; min-height: 100vh;
             background: radial-gradient(ellipse at 50% 0%, #1a1a1a 0%, #000000 70%);
         }
-        .product-layout { display: flex; flex-wrap: wrap; gap: 50px; justify-content: center; align-items: center; padding-top: 40px; }
-        .product-media img { width: 100%; max-width: 500px; border-radius: 60px; } /* Muito arredondado */
-        .product-info { max-width: 500px; flex: 1; min-width: 300px; }
-        
-        .btn-group { display: flex; flex-direction: column; gap: 15px; margin-top: 30px; }
-        .btn-action { padding: 20px; border-radius: 25px; border: none; font-weight: 600; cursor: pointer; font-size: 1.1rem; text-align: center; display: block; text-decoration: none; }
+        .product-layout { display: flex; flex-direction: row; gap: 40px; justify-content: center; align-items: center; flex-wrap: wrap; }
+        @media (max-width: 800px) { .product-layout { flex-direction: column; text-align: center; } }
+
+        .product-media img { width: 100%; max-width: 480px; border-radius: 45px; object-fit: cover; }
+        .btn-action { padding: 18px; border-radius: 20px; border: none; font-weight: 600; cursor: pointer; font-size: 1.1rem; text-align: center; display: block; text-decoration: none; margin-top: 15px; width: 100%; }
         .btn-now { background: var(--white); color: black; }
         .btn-wpp { background: var(--green-wpp); color: white; }
 
-        /* --- ADMIN (SENHA: admin123) --- */
+        /* --- ADMIN COM ROLAGEM --- */
         #admin-section, #login-section { 
-            display: none; 
-            background: var(--apple-gray); 
-            color: black; 
-            min-height: 100vh; 
-            position: fixed; 
-            top: 0; left: 0; width: 100%; 
-            z-index: 2000; 
-            overflow-y: auto; 
-            padding: 50px 20px;
-            box-sizing: border-box;
+            display: none; background: var(--apple-gray); color: black; 
+            height: 100vh; position: fixed; top: 0; left: 0; width: 100%; 
+            z-index: 2000; overflow-y: auto; padding: 40px 20px; box-sizing: border-box;
         }
-        .admin-form { background: #ffffff; padding: 30px; border-radius: 45px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-width: 600px; margin: 0 auto; }
+        .admin-form { background: #ffffff; padding: 30px; border-radius: 40px; max-width: 600px; margin: 0 auto; }
         input, select, textarea { width: 100%; padding: 14px; border-radius: 20px; border: 1px solid #ccc; margin-top: 8px; box-sizing: border-box; }
         .btn-admin { background: var(--apple-blue); color: white; border: none; padding: 16px; border-radius: 20px; width: 100%; cursor: pointer; font-weight: 600; margin-top: 20px; }
-        
-        table { width: 100%; border-collapse: collapse; background: white; border-radius: 20px; overflow: hidden; margin-top: 30px; max-width: 600px; margin-left: auto; margin-right: auto; }
-        td { padding: 15px; border-bottom: 1px solid #eee; }
-        .btn-del { color: red; cursor: pointer; border: none; background: none; font-weight: bold; }
 
-        footer { padding: 60px 5%; background: #111; color: #86868b; text-align: center; border-top: 0.5px solid #333; margin-top: 100px; }
-        .admin-link { color: #222; text-decoration: none; font-size: 0.8rem; margin-top: 20px; display: block; }
+        footer { padding: 40px 5%; background: #111; color: #86868b; text-align: center; margin-top: 80px; }
+        
+        table { width: 100%; border-collapse: collapse; background: white; border-radius: 20px; overflow: hidden; margin-top: 20px; }
+        th, td { text-align: left; padding: 15px; border-bottom: 1px solid #eee; color: black; }
+        .btn-del { color: red; cursor: pointer; border: none; background: none; font-weight: bold; }
     </style>
 </head>
 <body>
 
-<nav>
-    <div class="logo" onclick="irParaHome()"> iStore</div>
-    <div style="font-size: 0.9rem; opacity: 0.7;">Premium Experience</div>
-</nav>
+<nav><div class="logo" onclick="irParaHome()"> iStore</div></nav>
 <div class="nav-spacer"></div>
 
 <div id="shop-view">
-    <section class="hero"><h1>iPhone</h1><p>Titânio. Tão forte. Tão leve. Tão Pro.</p></section>
+    <section class="hero"><h1>iPhone</h1><p>Potência e Elegância.</p></section>
     <div class="container"><div class="grid" id="vitrine-produtos"></div></div>
-    <footer>
-        <p>© 2026 iStore Brasil</p>
-        <a href="javascript:void(0)" class="admin-link" onclick="abrirLogin()">Acesso Restrito</a>
-    </footer>
+    <footer><p>© 2026 iStore Brasil</p><a href="javascript:void(0)" onclick="abrirLogin()" style="color:#333; text-decoration:none; font-size:0.8rem;">ADM</a></footer>
 </div>
 
 <div id="product-page">
@@ -142,43 +125,51 @@
 </div>
 
 <div id="login-section">
-    <div style="text-align: center; margin-top: 100px;">
-        <div class="admin-form" style="max-width: 350px;">
-            <h2>Login ADM</h2>
-            <input type="password" id="admin-pass" placeholder="Senha">
-            <button class="btn-admin" onclick="validarLogin()">Entrar</button>
-            <p onclick="fecharAdmin()" style="cursor:pointer; color: #888; margin-top: 20px;">Cancelar</p>
-        </div>
-    </div>
+    <div style="text-align: center; margin-top: 50px;"><div class="admin-form" style="max-width: 350px;">
+        <h2>Login ADM</h2><input type="password" id="admin-pass" placeholder="Senha">
+        <button class="btn-admin" onclick="validarLogin()">Entrar</button>
+        <p onclick="fecharAdmin()" style="cursor:pointer; color: #888; margin-top: 20px;">Cancelar</p>
+    </div></div>
 </div>
 
 <div id="admin-section">
     <div class="admin-form">
-        <h2 style="margin-top:0">Novo Produto</h2>
-        <label>Modelo</label><input type="text" id="nome">
-        <label style="display:block; margin-top:15px;">Foto do Aparelho</label><input type="file" id="foto_arquivo" accept="image/*">
-        <div style="display:flex; gap: 10px; margin-top:15px;">
-            <div style="flex:1"><label>Preço (R$)</label><input type="number" id="preco"></div>
-            <div style="flex:1"><label>Categoria</label>
-                <select id="categoria" onchange="toggleBat()">
-                    <option value="Novo">Novo</option><option value="Usado">Usado</option>
-                </select>
-            </div>
+        <h2>Novo Aparelho</h2><input type="text" id="nome" placeholder="Modelo">
+        <label style="display:block; margin-top:15px; font-weight:bold;">Selecionar Foto</label><input type="file" id="foto_arquivo" accept="image/*">
+        <div style="display:flex; gap: 10px; margin-top:10px;">
+            <input type="number" id="preco" placeholder="Preço" style="flex:1">
+            <select id="categoria" onchange="toggleBat()" style="flex:1"><option value="Novo">Novo</option><option value="Usado">Usado</option></select>
         </div>
-        <div id="bat-box" style="display:none; margin-top:15px;"><label>Bateria (%)</label><input type="number" id="bateria" value="100"></div>
-        <label style="display:block; margin-top:15px;">Descrição</label><textarea id="desc_produto" rows="3"></textarea>
-        <button class="btn-admin" onclick="salvarProduto()">Publicar Agora</button>
+        <div id="bat-box" style="display:none; margin-top:10px;"><input type="number" id="bateria" placeholder="Bateria %" value="100"></div>
+        <textarea id="desc_produto" rows="3" placeholder="Descrição..."></textarea>
+        <button class="btn-admin" onclick="salvarProduto()">Publicar</button>
+
+        <h3 style="margin-top: 30px; color: black;">Produtos em Estoque</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Modelo</th>
+                    <th>Preço</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody id="lista-admin-body"></tbody>
+        </table>
     </div>
-    <table id="tabela-admin"><tbody id="lista-admin-body"></tbody></table>
-    <center><button style="background:none; border:none; color:#888; margin-top:30px; cursor:pointer;" onclick="fecharAdmin()">Sair do Sistema</button></center>
+    <center><button style="background:none; border:none; color:#888; margin-top:30px; cursor:pointer;" onclick="fecharAdmin()">Sair</button></center>
 </div>
 
 <script>
     const imgPadrao = "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-black-titanium-select?wid=470&hei=556&fmt=png-alpha&.v=1692875143528";
-    let produtos = [
-        { id: 1, nome: 'iPhone 15 Pro Max', preco: 8499, categoria: 'Novo', bateria: 100, imagem: imgPadrao, desc: "Processador A17 Pro." },
-        { id: 2, nome: 'iPhone 13 128GB', preco: 3200, categoria: 'Usado', bateria: 89, imagem: imgPadrao, desc: "Aparelho revisado." }
+    const estoquePadrao = [
+        { id: 1, nome: 'iPhone 14', preco: 3899, categoria: 'Novo', bateria: 100, imagem: 'iphone 14.avif', desc: "Novo / Lacrado. Design durável." },
+        { id: 2, nome: 'iPhone 14 Pro', preco: 5200, categoria: 'Usado', bateria: 89, imagem: 'iphone 14 pro.avif', desc: "Seminovo. Dynamic Island." },
+        { id: 3, nome: 'iPhone 15', preco: 4699, categoria: 'Novo', bateria: 100, imagem: 'iphone 15.avif', desc: "Novo / Lacrado." },
+        { id: 4, nome: 'iPhone 16 Pro Max', preco: 9899, categoria: 'Usado', bateria: 94, imagem: '515Wx515H-DGAP2368-1-.jpg', desc: "O auge da performance." },
+        { id: 5, nome: 'iPhone 17 Pro Max', preco: 12500, categoria: 'Novo', bateria: 100, imagem: 'iphone-17-laranja.avif', desc: "Laranja Cósmico." }
     ];
+
+    let produtos = JSON.parse(localStorage.getItem('istore_data')) || estoquePadrao;
 
     function renderizarLoja() {
         const vitrine = document.getElementById('vitrine-produtos');
@@ -186,22 +177,41 @@
         produtos.forEach(p => {
             vitrine.innerHTML += `
                 <div class="card" onclick="verAparelho(${p.id})">
-                    <span class="badge ${p.categoria === 'Novo' ? 'badge-new' : 'badge-used'}">${p.categoria}</span>
-                    <img src="${p.imagem}">
-                    <h3>${p.nome}</h3>
-                    <div class="price">R$ ${p.preco.toLocaleString('pt-BR')}</div>
-                    <button class="btn-buy">Ver Detalhes</button>
+                    <div>
+                        <span class="badge ${p.categoria === 'Novo' ? 'badge-new' : 'badge-used'}">${p.categoria}</span>
+                        <img src="./${p.imagem}" onerror="this.src='${imgPadrao}'">
+                        <h3>${p.nome}</h3>
+                    </div>
+                    <div>
+                        <div class="price">R$ ${p.preco.toLocaleString('pt-BR')}</div>
+                        <button class="btn-buy">Ver Detalhes</button>
+                    </div>
                 </div>`;
         });
+        localStorage.setItem('istore_data', JSON.stringify(produtos));
+        atualizarTabelaAdmin();
     }
 
-    function validarLogin() {
-        const pass = document.getElementById('admin-pass').value;
-        if(pass === "admin123") {
-            document.getElementById('login-section').style.display = 'none';
-            document.getElementById('admin-section').style.display = 'block';
-            atualizarTabelaAdmin();
-        } else { alert("Senha incorreta!"); }
+    function atualizarTabelaAdmin() {
+        const listaBody = document.getElementById('lista-admin-body');
+        if (listaBody) {
+            listaBody.innerHTML = '';
+            produtos.forEach(p => {
+                listaBody.innerHTML += `
+                    <tr>
+                        <td>${p.nome}</td>
+                        <td>R$ ${p.preco.toLocaleString('pt-BR')}</td>
+                        <td><span class="btn-del" onclick="removerProduto(${p.id})">Excluir</span></td>
+                    </tr>`;
+            });
+        }
+    }
+
+    function removerProduto(id) {
+        if(confirm("Deseja excluir este produto?")) {
+            produtos = produtos.filter(p => p.id !== id);
+            renderizarLoja();
+        }
     }
 
     function verAparelho(id) {
@@ -210,15 +220,15 @@
         document.getElementById('product-page').style.display = 'block';
         document.getElementById('product-content').innerHTML = `
             <div class="product-layout">
-                <div class="product-media"><img src="${p.imagem}"></div>
+                <div class="product-media"><img src="./${p.imagem}" onerror="this.src='${imgPadrao}'"></div>
                 <div class="product-info">
                     <h1>${p.nome}</h1>
                     <div class="product-price">R$ ${p.preco.toLocaleString('pt-BR')}</div>
-                    <p style="color:#86868b; font-size:1.2rem;">${p.desc || "Qualidade garantida iStore."}</p>
+                    <p style="color:#86868b; margin-bottom:20px;">${p.desc}</p>
                     <p>Bateria: <b>${p.bateria}%</b></p>
                     <div class="btn-group">
                         <button class="btn-action btn-now" onclick="alert('Checkout em breve!')">Comprar agora</button>
-                        <a href="https://wa.me/5562999999999" target="_blank" class="btn-action btn-wpp">Chamar no WhatsApp</a>
+                        <a href="https://wa.me/5562999999999" target="_blank" class="btn-action btn-wpp">WhatsApp</a>
                     </div>
                 </div>
             </div>`;
@@ -229,23 +239,41 @@
         const nome = document.getElementById('nome').value;
         const preco = document.getElementById('preco').value;
         const arquivo = document.getElementById('foto_arquivo').files[0];
-        if(!nome || !preco) return alert("Preencha os dados!");
-        let urlImagem = arquivo ? URL.createObjectURL(arquivo) : imgPadrao;
+        
+        if(!nome || !preco) return alert("Preencha modelo e preço!");
+        
+        let imgUrl = arquivo ? arquivo.name : imgPadrao;
+        
         produtos.push({ 
             id: Date.now(), nome, preco: parseFloat(preco), 
             categoria: document.getElementById('categoria').value, 
             bateria: document.getElementById('bateria').value, 
-            imagem: urlImagem, desc: document.getElementById('desc_produto').value 
+            imagem: imgUrl, desc: document.getElementById('desc_produto').value 
         });
-        renderizarLoja(); atualizarTabelaAdmin(); alert("Produto publicado!");
+
+        renderizarLoja(); // Atualiza sem fechar a aba
+        
+        // Limpa campos para o próximo cadastro
+        document.getElementById('nome').value = '';
+        document.getElementById('preco').value = '';
+        document.getElementById('foto_arquivo').value = '';
+        document.getElementById('desc_produto').value = '';
+        
+        alert("Publicado! Você pode adicionar outro agora.");
     }
 
+    function validarLogin() { 
+        if(document.getElementById('admin-pass').value === "admin123") { 
+            document.getElementById('login-section').style.display = 'none'; 
+            document.getElementById('admin-section').style.display = 'block'; 
+            atualizarTabelaAdmin();
+        } else { alert("Senha incorreta!"); } 
+    }
+    
     function irParaHome() { document.getElementById('shop-view').style.display = 'block'; document.getElementById('product-page').style.display = 'none'; }
     function abrirLogin() { document.getElementById('login-section').style.display = 'block'; }
     function fecharAdmin() { document.getElementById('login-section').style.display = 'none'; document.getElementById('admin-section').style.display = 'none'; }
     function toggleBat() { document.getElementById('bat-box').style.display = (document.getElementById('categoria').value === 'Usado') ? 'block' : 'none'; }
-    function atualizarTabelaAdmin() { document.getElementById('lista-admin-body').innerHTML = produtos.map(p => `<tr><td style="padding:15px;">${p.nome}</td><td style="text-align:right; padding:15px;"><button class="btn-del" onclick="remover(${p.id})">Excluir</button></td></tr>`).join(''); }
-    function remover(id) { produtos = produtos.filter(p => p.id !== id); renderizarLoja(); atualizarTabelaAdmin(); }
 
     renderizarLoja();
 </script>
